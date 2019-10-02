@@ -9,8 +9,8 @@ import {
   MdAdd
 } from "react-icons/md";
 import { DiCodeigniter } from "react-icons/di";
-
 import { Fab, Fade, Modal, Backdrop, makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 import defaultImg from "../../assets/default-girl.png";
 
@@ -51,6 +51,7 @@ const Home = () => {
           <img src={defaultImg} />
         </div>
       </div>
+
       <div className="side-categories">
         <div className="top-trendings">
           <div className="trendings">
@@ -68,16 +69,26 @@ const Home = () => {
       </div>
       <div className="main-feeds">
         <CustomModel open={open} handleClose={handleClose} />
-        <EachFeed />
-        <EachFeed />
-        <EachFeed />
-        <EachFeed />
-        <EachFeed />
-        <EachFeed />
-        <EachFeed />
-        <EachFeed />
-        <EachFeed />
-        <EachFeed />
+        <div>
+          <Link to={`/feed/123431`}>
+            <EachFeed />
+          </Link>
+        </div>
+        <div>
+          <Link to={`/feed/123431`}>
+            <EachFeed />
+          </Link>
+        </div>
+        <div>
+          <Link to={`/feed/123431`}>
+            <EachFeed />
+          </Link>
+        </div>
+        <div>
+          <Link to={`/feed/123431`}>
+            <EachFeed />
+          </Link>
+        </div>
       </div>
       <div className="side-artist">
         <div>
@@ -140,6 +151,7 @@ const Container = styled.div`
   grid-template-columns: 15% 35% 40% 10%;
   grid-auto-rows: minmax(10px, auto);
   color: white;
+  margin-top: 0.5rem;
   grid-template-areas:
     "title navbtns navbtns profile"
     "side-categories main-feeds main-feeds side-artist";
