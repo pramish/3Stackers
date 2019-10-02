@@ -16,11 +16,15 @@ const FeedPage = props => {
         <div></div>
       </div>
 
-      <div className="left-img">
-        <img src={meme} />
-      </div>
+      <div className="main-body">
+        <div className="left-img">
+          <img src={meme} />
+        </div>
 
-      <div className="right-comments"></div>
+        <div className="right-comments">
+          <h3>Comments</h3>
+        </div>
+      </div>
     </Container>
   );
 };
@@ -31,6 +35,7 @@ export default FeedPage;
 
 const Container = styled.div`
   margin-top: 0.5rem;
+
   color: white;
 
   .back {
@@ -38,11 +43,20 @@ const Container = styled.div`
     width: 10%;
     display: flex;
     align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  .main-body {
+    display: flex;
+    flex-direction: row;
   }
   .left-img {
-    width: 40%;
+    width: 50%;
+    padding: 1rem;
+    img {
+      max-width: 100%;
+    }
   }
   .right-img {
-    width: 60%;
+    width: 50%;
   }
 `;
