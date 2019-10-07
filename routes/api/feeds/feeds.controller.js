@@ -12,7 +12,7 @@ const getAllFeeds = getAll(Feed);
 const getOneFeed = getOne(Feed);
 const createFeed = createOne(Feed);
 const deleteFeed = deleteOne(Feed);
-
+  
 const uploadImage = async (req, res, next) => {
   try {
     let img = req.files.myImg;

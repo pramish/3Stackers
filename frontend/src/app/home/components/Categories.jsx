@@ -37,7 +37,7 @@ const Wrapper = styled.div`
   }
   img {
     width: 100%;
-    border-radius: 0.8rem;
+    border-radius: 50%;
     object-fit: cover;
   }
   p {

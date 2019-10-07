@@ -62,6 +62,11 @@ const AddImageForm = () => {
             <InputLabel htmlFor="title">Title</InputLabel>
             <Input id="title" aria-describedby="title" />
           </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="category">Category</InputLabel>
+            <Input id="category" aria-describedby="category" />
+          </FormControl>
+          <input type="hidden" name="initial" value="true" />
           <Button color="secondary" onClick={postHandler}>
             Create a Feed
           </Button>
