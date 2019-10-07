@@ -29,16 +29,20 @@ const Wrapper = styled.div`
     display: none;
   }
   .container {
-    height: 38rem;
+    /* height: 40rem; */
   }
   .img-wrapper {
     background-size: cover;
     background-position: center;
+    /* height: 20rem;
+    width: 20rem; */
   }
   img {
     width: 100%;
-    border-radius: 50%;
+    border-radius: 10%;
     object-fit: cover;
+    /* height: 20rem;
+    width: 20rem; */
   }
   p {
     margin: 0;

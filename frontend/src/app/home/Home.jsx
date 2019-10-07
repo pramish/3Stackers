@@ -1,22 +1,20 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+
 import {
-  MdHome,
-  MdSearch,
   MdFormatListBulleted,
   MdChevronRight,
   MdTrendingUp,
   MdAdd
 } from "react-icons/md";
 import { DiCodeigniter } from "react-icons/di";
-import { Fab, Fade, Modal, Backdrop, makeStyles } from "@material-ui/core";
+import { Fab, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import defaultImg from "../../assets/default-girl.png";
-
-import AddImageForm from "./components/AddImageForm";
 import EachFeed from "./EachFeed";
 import Categories from "./components/Categories";
+import { HomeContainer } from "./style";
+import { CustomModel } from "./components/Model";
 
 const Home = () => {
   const [open, setOpen] = React.useState(false);
@@ -33,16 +31,19 @@ const Home = () => {
   };
 
   return (
-    <Container>
+    <HomeContainer>
       <div className="title">
         <h4>Photobooth</h4>
       </div>
       <div className="navbtns">
         <div>
-          <MdHome color="white" size="2rem" />
+          <input type="text" placeholder="Search" />
 
-          <MdSearch color="white" size="2rem" />
-
+          <div className="fab">
+            <Fab color="primary" aria-label="add" onClick={handleAddClick}>
+              <MdAdd size="1rem" />
+            </Fab>
+          </div>
           <MdFormatListBulleted color="white" size="2rem" />
         </div>
       </div>
@@ -53,42 +54,34 @@ const Home = () => {
       </div>
 
       <div className="side-categories">
-        <div className="top-trendings">
-          <div className="trendings">
-            <MdTrendingUp /> Trending <MdChevronRight />
-          </div>
-          <div className="top-artist">
-            <DiCodeigniter />
-            Top Artists <MdChevronRight />
-          </div>
-        </div>
         <div className="categories">
           <Categories />
         </div>
-        <div>Photobooth @2019 </div>
+      </div>
+      <div className="latest">
+        <div style={{ marginLeft: "4rem" }}>CATEGORIES</div>
+        <div className="feeds-text">
+          <div className="feeds-btn">
+            <span>Latest Feeds </span>
+            <span>Popular Feeds</span>
+          </div>
+        </div>
       </div>
       <div className="main-feeds">
         <CustomModel open={open} handleClose={handleClose} />
-        <div>
-          <Link to={`/feed/123431`}>
-            <EachFeed />
-          </Link>
-        </div>
-        <div>
-          <Link to={`/feed/123431`}>
-            <EachFeed />
-          </Link>
-        </div>
-        <div>
-          <Link to={`/feed/123431`}>
-            <EachFeed />
-          </Link>
-        </div>
-        <div>
-          <Link to={`/feed/123431`}>
-            <EachFeed />
-          </Link>
-        </div>
+        <Grid item xs={12}>
+          <Grid container justify="center" spacing={4}>
+            {[0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2].map(value => (
+              <Grid key={value} item>
+                <div>
+                  <Link to={`/feed/123431`}>
+                    <EachFeed />
+                  </Link>
+                </div>
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
       </div>
       <div className="side-artist">
         <div>
@@ -103,141 +96,9 @@ const Home = () => {
         <div>
           <img src={defaultImg} />
         </div>
-        <div>
-          <div className="fab">
-            <Fab color="primary" aria-label="add" onClick={handleAddClick}>
-              <MdAdd size="1.5rem" />
-            </Fab>
-          </div>
-        </div>
+        <div></div>
       </div>
-    </Container>
+    </HomeContainer>
   );
 };
 export default Home;
-
-const CustomModel = ({ open, handleClose }) => {
-  const classes = useStyles();
-  return (
-    <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
-      className={classes.modal}
-      open={open}
-      onClose={handleClose}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500
-      }}
-    >
-      <Fade in={open}>
-        <AddImageForm />
-      </Fade>
-    </Modal>
-  );
-};
-
-const useStyles = makeStyles(theme => ({
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-}));
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: 15% 35% 40% 10%;
-  grid-auto-rows: minmax(10px, auto);
-  color: white;
-  margin-top: 0.5rem;
-  grid-template-areas:
-    "title navbtns navbtns profile"
-    "side-categories main-feeds main-feeds side-artist";
-
-  .side-categories {
-    grid-area: side-categories;
-    padding: 1rem;
-    display: grid;
-    grid-auto-columns: minmax(0, auto);
-    grid-template-rows: 0.4fr auto 0fr;
-
-    .top-trendings {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      /* align-items: center; */
-      margin-bottom: 2rem;
-      div {
-        display: flex;
-        justify-content: space-between;
-        /* align-items: flex-start; */
-      }
-    }
-  }
-  .main-feeds {
-    grid-area: main-feeds;
-    overflow: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-    grid-gap: 1rem;
-    height: 90vh;
-    margin-top: 1rem;
-    padding-left: 1rem;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-  .side-artist {
-    grid-area: side-artist;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    img {
-      height: 2rem;
-      width: 2rem;
-      margin: 0.4em;
-    }
-  }
-  .title {
-    text-align: center;
-    grid-area: title;
-  }
-  .navbtns {
-    grid-area: navbtns;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    div {
-      display: flex;
-      width: 20rem;
-      justify-content: space-around;
-      align-items: center;
-    }
-  }
-
-  .profile {
-    grid-area: profile;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    img {
-      height: 2rem;
-      width: 2rem;
-    }
-  }
-  h4 {
-    margin: 0;
-    font-size: 1.4rem;
-    text-decoration: none;
-    font-style: normal;
-    color: white;
-  }
-`;

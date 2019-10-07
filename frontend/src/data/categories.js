@@ -3,14 +3,14 @@ import design from "../assets/categories/design.jpg";
 import art from "../assets/categories/art.jpg";
 
 export default [
-  {
-    name: "Design",
-    img: design
-  },
-  {
-    name: "Art",
-    img: art
-  },
+  // {
+  //   name: "Design",
+  //   img: design
+  // },
+  // {
+  //   name: "Art",
+  //   img: art
+  // },
   {
     name: "Travel",
     img: meme
